@@ -19,9 +19,31 @@ form{
 
 .choose-name-container{
     border: 5px solid #333;
-
+    animation: colorChange 2s infinite;
 }
 
 h5{
     color: red;
 }
+
+.submit-button{
+    background-color: white;
+    border: 1px solid black;
+    padding: .5rem;
+    margin: 1rem;
+    width: 100%;
+}
+
+.name-field{
+    border: 1px solid black;
+    padding: .2rem;
+    margin: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+@keyframes colorChange {
+    0% { border-color: #333; }
+    50% { border-color: #878787; }
+    100% { border-color: #333; }
+  }

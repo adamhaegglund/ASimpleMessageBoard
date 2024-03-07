@@ -31,8 +31,8 @@ function ChooseName({onNameChosen}: ChooseNameProps) {
       <div className="padding-container">
         <h1>Choose Your Name</h1>
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Your name" value={username} onChange={handleChange}/>
-          <input type="submit" value="Submit" />
+          <input type="text" className="name-field" value={username} onChange={handleChange}/>
+          <input type="submit" value="Submit" className="submit-button"/>
         </form>
         {error && <h5>{error}</h5>} 
       </div>
