@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import '../css/message_board.css';
 
 interface Message {
   message: string;
@@ -11,10 +12,11 @@ function MessageBoard() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [currentMessage, setCurrentMessage] = useState('');
 
-  const handlePostMessage = () => {
+  const handlePostMessage = (event: React.FormEvent<HTMLFormElement>) => {
+    event?.preventDefault();
     const newMessage: Message = {
       message: currentMessage,
-      date: new Date().toISOString(),
+      date: new Date().toDateString(),
       user: 'username', 
     };
     setMessages([...messages, newMessage]);
@@ -29,8 +31,10 @@ function MessageBoard() {
     <div>
         <h1>A Simple Message Board</h1>
       <div className="form-container">
-      <input type="text" value={currentMessage} onChange={handleChange} />  
-      <button onClick={handlePostMessage}>Post Message</button>
+        <form onSubmit={handlePostMessage}>
+            <input type="text" value={currentMessage} onChange={handleChange} />  
+            <button type="submit">Post Message</button>
+        </form>
       </div>
       {messages.map((message, index) => (
         <div key={index}>
