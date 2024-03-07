@@ -8,16 +8,21 @@ interface Message {
   user: string;
 }
 
-function MessageBoard() {
+interface MessageBoardProps{
+    username: string;
+    
+}
+
+function MessageBoard({username}: MessageBoardProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [currentMessage, setCurrentMessage] = useState('');
 
   const handlePostMessage = (event: React.FormEvent<HTMLFormElement>) => {
-    event?.preventDefault();
+    event.preventDefault();
     const newMessage: Message = {
       message: currentMessage,
       date: new Date().toDateString(),
-      user: 'username', 
+      user: username, 
     };
     setMessages([...messages, newMessage]);
     setCurrentMessage(''); 
@@ -33,13 +38,13 @@ function MessageBoard() {
       <div className="form-container">
         <form onSubmit={handlePostMessage}>
             <input type="text" value={currentMessage} onChange={handleChange} />  
-            <button type="submit">Post Message</button>
+            <button type="submit">POST MESSAGE</button>
         </form>
       </div>
       {messages.map((message, index) => (
-        <div key={index}>
-          <p>{message.user}: {message.message}</p>
-          <p>{message.date}</p>
+        <div key={index} className="message-container">
+          <p className="message-content">{message.message}</p>
+          <p className="message-legend">{message.user} on {message.date}</p>
         </div>
       ))}
     </div>

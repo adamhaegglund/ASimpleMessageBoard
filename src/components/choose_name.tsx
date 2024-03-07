@@ -2,7 +2,7 @@ import '../css/choose_name.css';
 import React, { useState } from 'react';
 
 interface ChooseNameProps{
-    onNameChosen: () => void;
+    onNameChosen: (name: string) => void;
 }
 
 function ChooseName({onNameChosen}: ChooseNameProps) {
@@ -16,7 +16,7 @@ function ChooseName({onNameChosen}: ChooseNameProps) {
       console.log('Error: ', error);
     } else {
       setError(''); 
-      onNameChosen();
+      onNameChosen(username);
       console.log('Username: ', username);
     }
   }

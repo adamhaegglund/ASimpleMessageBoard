@@ -6,14 +6,17 @@ import MessageBoardPage from './pages/message_board';
 
 function App() {
   const [nameChosen, setNameChosen] = useState(false);
+  const [username, setUsername] = useState('');
 
-  const handleNameChosen = () => {
+
+  const handleNameChosen = (name: string) => {
+    setUsername(name);
     setNameChosen(true);
   }
   return (
     <div className="App">
       <div className="container">
-      {nameChosen ? <MessageBoardPage /> : <ChooseName onNameChosen={handleNameChosen} />}
+      {nameChosen ? <MessageBoardPage username={username}/> : <ChooseName onNameChosen={handleNameChosen} />}
 
       </div>
     </div>
